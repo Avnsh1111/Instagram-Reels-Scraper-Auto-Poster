@@ -1,0 +1,4 @@
+instagram_private_api==1.6.0.0
+instagrapi==1.17.3
+Requests==2.28.2
+SQLAlchemy==2.0.9
