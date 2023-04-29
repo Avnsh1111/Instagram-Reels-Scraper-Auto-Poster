@@ -1,5 +1,3 @@
-![Reels-AutoPilot Cover image](images/cover.png)
-
 # Reels-AutoPilot
 
 Reels-AutoPilot is a powerful GitHub repository that scrapes reels from specified Instagram accounts and automatically posts them to your account. Keep up with the latest content from your favorite creators and effortlessly share it with your followers. Enhance your Instagram presence and grow your account with Reels-AutoPilot!
@@ -17,13 +15,13 @@ Before using Reels-AutoPilot, set your configuration variables in the `config.py
 
 1. Clone the repository:
 
-```
+```bash
 git clone https://github.com/avnsh1111/Instagram-Reels-Scraper-Auto-Poster.git
 ```
 
 2. Install the required dependencies:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -42,21 +40,20 @@ In `config.py`, set the following variables:
 Example:
 
 ```python
-
-#Fetch LIMIT for scraper script
+# Fetch LIMIT for scraper script
 FETCH_LIMIT = 10
 
-#Posting interval in Minutes
-POSTING_INTERVAL_IN_MIN = 15 #Every 15 Minutes
+# Posting interval in Minutes
+POSTING_INTERVAL_IN_MIN = 15 # Every 15 Minutes
 
-#Scraper interval in Minutes
-SCRAPER_INTERVAL_IN_MIN = 720 #Every 12 hours
+# Scraper interval in Minutes
+SCRAPER_INTERVAL_IN_MIN = 720 # Every 12 hours
 
-#Instagram Username & Password
+# Instagram Username & Password
 USERNAME = "your_username"
 PASSWORD = "your_password"
 
-#Account List for scraping
+# Account List for scraping
 ACCOUNTS = [
     "totalgaming_official",
     "carryminati",
@@ -65,9 +62,8 @@ ACCOUNTS = [
     "dynamo__gaming"
 ]
 
-#HASHTAGS to add while Posting
+# HASHTAGS to add while Posting
 HASHTAGS = "#gaming #gamer #ps #playstation #videogames #game #xbox #games #twitch #fortnite #pc #memes #pcgaming #gamers #gamingcommunity #youtube #xboxone #gamergirl #nintendo #gta #callofduty #streamer #follow #pubg #videogame #esports #bhfyp #meme #twitchstreamer #art"
-
 ```
 
 ## Usage
@@ -76,8 +72,8 @@ HASHTAGS = "#gaming #gamer #ps #playstation #videogames #game #xbox #games #twit
 
 To scrape reels from the specified accounts in `config.py`, run:
 
-```
-py index.py
+```bash
+python index.py
 ```
 
 This will scrape reels and store them in the `downloads` folder.
@@ -86,8 +82,8 @@ This will scrape reels and store them in the `downloads` folder.
 
 To post scraped reels to your Instagram account, run:
 
-```
-py poster.py
+```bash
+python poster.py
 ```
 
 This will post reels at the specified interval in `config.py`.
