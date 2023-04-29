@@ -42,18 +42,32 @@ In `config.py`, set the following variables:
 Example:
 
 ```python
-FETCH_LIMIT=10
-USERNAME = "your_instagram_username"
-PASSWORD = "your_instagram_password"
 
+#Fetch LIMIT for scraper script
+FETCH_LIMIT = 10
+
+#Posting interval in Minutes
+POSTING_INTERVAL_IN_MIN = 15 #Every 15 Minutes
+
+#Scraper interval in Minutes
+SCRAPER_INTERVAL_IN_MIN = 720 #Every 12 hours
+
+#Instagram Username & Password
+USERNAME = "your_username"
+PASSWORD = "your_password"
+
+#Account List for scraping
 ACCOUNTS = [
-    "account1",
-    "account2",
-    "account3"
+    "totalgaming_official",
+    "carryminati",
+    "techno_gamerz",
+    "payalgamingg",
+    "dynamo__gaming"
 ]
-HASHTAGS = "#reels #reelsinstagram #reelitfeelit"
-POSTING_INTERVAL_IN_MIN = 15
-SCRAPER_INTERVAL_IN_MIN = 720  # Every 12 hours
+
+#HASHTAGS to add while Posting
+HASHTAGS = "#gaming #gamer #ps #playstation #videogames #game #xbox #games #twitch #fortnite #pc #memes #pcgaming #gamers #gamingcommunity #youtube #xboxone #gamergirl #nintendo #gta #callofduty #streamer #follow #pubg #videogame #esports #bhfyp #meme #twitchstreamer #art"
+
 ```
 
 ## Usage
