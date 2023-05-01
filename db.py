@@ -14,6 +14,9 @@ Session = sessionmaker(bind=engine)
 # Create a base class for declarative models
 Base = declarative_base()
 
+# Add `checkfirst=True` to only create the table if it doesn't exist
+Base.metadata.create_all(engine, checkfirst=True)
+
 # Define a Reels model
 class Reel(Base):
     __tablename__ = 'reels'
