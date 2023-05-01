@@ -114,22 +114,25 @@ def main():
 
         for short_video in shorts:
             print(f"Downloading {short_video['title']} ({short_video['url']})")
-            downloaded_file = download_shorts_video(short_video["url"], output_directory)
-            print(f"Downloaded to: {downloaded_file}")
-            reelDb = Reel(
-                post_id=short_video['id'],
-                code=short_video['id'],
-                account=channel_id,
-                caption=short_video['title'],
-                file_name=os.path.basename(downloaded_file),
-                file_path=downloaded_file,
-                data=json.dumps(short_video),
-                is_posted=False,
-                # posted_at = NULL
-            )
-            session.add(reelDb)
-            session.commit()
+            exists = session.query(Reel).filter_by(code=short_video['id']).first()
+            if not exists:
+                downloaded_file = download_shorts_video(short_video["url"], output_directory)
+                print(f"Downloaded to: {downloaded_file}")
+                reelDb = Reel(
+                    post_id=short_video['id'],
+                    code=short_video['id'],
+                    account=channel_id,
+                    caption=short_video['title'],
+                    file_name=os.path.basename(downloaded_file),
+                    file_path=downloaded_file,
+                    data=json.dumps(short_video),
+                    is_posted=False,
+                    # posted_at = NULL
+                )
+                session.add(reelDb)
+                session.commit()
     print()
+
     time.sleep(config.SCRAPER_INTERVAL_IN_MIN * 60)
     main()
 
