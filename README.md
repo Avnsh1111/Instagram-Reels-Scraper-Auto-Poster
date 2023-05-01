@@ -13,6 +13,7 @@ Before using Reels-AutoPilot, set your configuration variables in the `config.py
 - Python 3.x
 - A valid Instagram account
 - A Google Developers Console project with the YouTube Data API enabled and an API key
+- Docker (optional)
 
 ### Installation
 
@@ -128,6 +129,42 @@ python poster.py
 ```
 
 This will post reels and shorts at the specified interval in `config.py`.
+
+## Docker Configuration
+
+You can also use Docker to build and run Reels-AutoPilot.
+
+### Build the Docker Image
+
+To build the Docker image, run:
+
+```bash
+docker build -t reels-autopilot .
+```
+
+### Run the Docker Container
+
+To run the Docker container, run:
+
+```bash
+docker run -d reels-autopilot
+```
+
+### Check Running Containers
+
+To check the running Docker containers, run:
+
+```bash
+docker ps
+```
+
+### Stop the Docker Container
+
+To stop the Docker container, run:
+
+```bash
+docker stop <container_id>
+```
 
 ## Contributing
 
