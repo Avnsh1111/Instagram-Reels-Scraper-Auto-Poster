@@ -1,3 +1,5 @@
+![Cover Image] (images/cover.png)
+
 # Reels-AutoPilot
 
 Reels-AutoPilot is a powerful GitHub repository that scrapes reels from specified Instagram accounts and automatically posts them to your account. Keep up with the latest content from your favorite creators and effortlessly share it with your followers. Enhance your Instagram presence and grow your account with Reels-AutoPilot!
