@@ -79,7 +79,8 @@ def main():
                     pass
                     print('------------------------------------------------------------------------------------')
 
-        time.sleep(config.SCRAPER_INTERVAL_IN_MIN*60)
+    time.sleep(config.SCRAPER_INTERVAL_IN_MIN*60)
+    main()
 
 
 
