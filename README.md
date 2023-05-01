@@ -1,4 +1,4 @@
-![Cover Image] (images/cover.png)
+[Cover Image] (images/cover.png)
 
 # Reels-AutoPilot
 
