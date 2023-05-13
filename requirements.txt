@@ -5,4 +5,4 @@ SQLAlchemy==2.0.9
 google_api_python_client==2.86.0
 yt_dlp==2023.3.4
 moviepy==1.0.3
-pillow==9.1.0
+pillow==8.1.1
