@@ -21,10 +21,8 @@ def get_reel():
 
 
 # Magic Starts Here
-def main():
-    api = Client()
+def main(api):
     try:
-        api.login(config.USERNAME, config.PASSWORD)
         reel = get_reel()
         if os.path.exists(reel.file_path):
             media = api.clip_upload(
@@ -39,7 +37,7 @@ def main():
             if media:
                 update_status(reel.code)
                 time.sleep(config.POSTING_INTERVAL_IN_MIN * 60)
-            main()
+            main(api)
             pass
 
     except Exception as e:
@@ -48,5 +46,15 @@ def main():
         pass
 
 if __name__ == "__main__":
-    main()
+     try:
+        api = Client()
+        api.login(config.USERNAME, config.PASSWORD)
+        pass
+
+    except Exception as e:
+        print(f"Exception {type(e).__name__}: {str(e)}")
+        exit()
+        pass
+    
+    main(api)
     session.close()
