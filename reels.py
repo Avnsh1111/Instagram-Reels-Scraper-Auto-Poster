@@ -25,16 +25,7 @@ def get_file_path(file_name):
 
 
 #Magic Starts Here
-def main():
-    
-    api = Client()
-    try : 
-        api.login(config.USERNAME, config.PASSWORD)
-        pass
-    except Exception as e:
-        print(f"Exception {type(e).__name__}: {str(e)}")
-        exit()
-
+def main(api):
 
     for account in config.ACCOUNTS:
 
@@ -80,10 +71,18 @@ def main():
                     print('------------------------------------------------------------------------------------')
 
     time.sleep(config.SCRAPER_INTERVAL_IN_MIN*60)
-    main()
+    main(api)
 
 
 
 if __name__ == "__main__":
-    main()
+    api = Client()
+    try : 
+        api.login(config.USERNAME, config.PASSWORD)
+        pass
+    except Exception as e:
+        print(f"Exception {type(e).__name__}: {str(e)}")
+        exit()
+        
+    main(api)
     session.close()
