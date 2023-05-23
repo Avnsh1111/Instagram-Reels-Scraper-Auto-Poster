@@ -8,9 +8,9 @@ from yt_dlp.postprocessor.common import PostProcessor
 import config
 import json
 import time
-from db import Session, Reel
+from src.db import Session, Reel
 
-session = Session()
+
 
 # Logger class to handle yt_dlp log messages
 class Logger:
@@ -103,6 +103,7 @@ def get_shorts_videos(channel_id: str, api_key: str, max_results: int = 50):
 def main():
     api_key = config.YOUTUBE_API_KEY
     output_directory = config.DOWNLOAD_DIR
+    session = Session()
 
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
@@ -131,11 +132,6 @@ def main():
                 )
                 session.add(reelDb)
                 session.commit()
-    print()
-
-    time.sleep(config.SCRAPER_INTERVAL_IN_MIN * 60)
-    main()
-
-if __name__ == "__main__":
-    main()
+                
     session.close()
+   

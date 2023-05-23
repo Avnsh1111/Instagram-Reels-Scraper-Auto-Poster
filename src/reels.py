@@ -1,10 +1,10 @@
 from instagrapi import Client
-from db import Session, Reel, ReelEncoder
+from src.db import Session, Reel, ReelEncoder
 import json
 import config
 import time
 
-session = Session()
+
 #Function to fetch reel from given account
 def get_reels(account,api):
     user_id = api.user_id_from_username(account)
@@ -27,6 +27,7 @@ def get_file_path(file_name):
 #Magic Starts Here
 def main(api):
 
+    session = Session()
     for account in config.ACCOUNTS:
 
         reels_by_account = get_reels(account,api)
@@ -61,6 +62,7 @@ def main(api):
                                     )
                         session.add(reelDb)
                         session.commit()
+                        
                         print('Inserting Record...')
                         #print('Insert Reel Record : ' + json.dumps(reel, cls=ReelEncoder) )
                         print('<---------Database Insert End--------->')
@@ -70,19 +72,4 @@ def main(api):
                     pass
                     print('------------------------------------------------------------------------------------')
 
-    time.sleep(config.SCRAPER_INTERVAL_IN_MIN*60)
-    main(api)
-
-
-
-if __name__ == "__main__":
-    api = Client()
-    try : 
-        api.login(config.USERNAME, config.PASSWORD)
-        pass
-    except Exception as e:
-        print(f"Exception {type(e).__name__}: {str(e)}")
-        exit()
-        
-    main(api)
     session.close()
