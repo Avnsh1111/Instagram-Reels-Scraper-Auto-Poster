@@ -42,6 +42,15 @@ SCRAPER_INTERVAL_IN_MIN = 720  # Every 12 hours
 USERNAME = "your_username"
 PASSWORD = "your_password"
 
+# Account List for scraping
+ACCOUNTS = [
+    "totalgaming_official",
+    "carryminati",
+    "techno_gamerz",
+    "payalgamingg",
+    "dynamo__gaming"
+]
+
 # like_and_view_counts_disabled
 LIKE_AND_VIEW_COUNTS_DISABLED = 0
 
@@ -61,14 +70,7 @@ IS_ENABLED_YOUTUBE_SCRAPING = 0
 # YOUTUBE API KEY
 YOUTUBE_API_KEY = "YOUR_API_KEY"
 
-# Account List for scraping
-ACCOUNTS = [
-    "totalgaming_official",
-    "carryminati",
-    "techno_gamerz",
-    "payalgamingg",
-    "dynamo__gaming"
-]
+
 
 # YouTube Channel List short for scraping
 CHANNEL_LINKS = [

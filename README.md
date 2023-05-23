@@ -21,9 +21,6 @@ Reels-AutoPilot is a powerful GitHub repository that scrapes reels from specifie
     - [Generate a YouTube API Key](#generate-a-youtube-api-key)
     - [Configuration](#configuration)
 - [Usage](#usage)
-    - [Scraping Reels](#scraping-reels)
-    - [Scraping YouTube Shorts](#scraping-youtube-shorts)
-    - [Posting Reels and Shorts](#posting-reels-and-shorts)
 - [Docker Configuration](#docker-configuration)
     - [Build the Docker Image](#build-the-docker-image)
     - [Run the Docker Container](#run-the-docker-container)
@@ -83,35 +80,76 @@ YOUTUBE_API_KEY = "YOUR_API_KEY"
 ### Configuration
 
 In `config.py`, set the following variables:
-
+## Remover Configurations
+- `IS_REMOVE_FILES`: 0 = Keep Files; 1 = Delete Posted Files;
+- `REMOVE_FILE_AFTER_MINS`: Interval in minutes to remover files
+## Instagram Configurations
+- `IS_ENABLED_REELS_SCRAPER`: 0/1 = Turn Off/Turn On Reels Scraper
+- `IS_ENABLED_AUTO_POSTER`: 0/1 = Turn Off/Turn On Auto Poster
+- `FETCH_LIMIT`: Number of reels/shorts to fetch per account/channel
+- `POSTING_INTERVAL_IN_MIN`: Interval in minutes between reel/short postings
 - `USERNAME`: Your Instagram username
 - `PASSWORD`: Your Instagram password
 - `ACCOUNTS`: An array of Instagram accounts to scrape reels from
-- `CHANNEL_LINKS`: An array of YouTube channel links to scrape shorts from
-- `YOUTUBE_API_KEY`: Your YouTube API key
-- `FETCH_LIMIT`: Number of reels/shorts to fetch per account/channel
-- `HASHTAGS`: Hashtags to add while reposting reels
-- `POSTING_INTERVAL_IN_MIN`: Interval in minutes between reel/short postings
 - `SCRAPER_INTERVAL_IN_MIN`: Interval in minutes between scraper runs
+- `LIKE_AND_VIEW_COUNTS_DISABLED`: 0/1 = Disable/Enable Like and View 
+- `DISABLE_COMMENTS`: 0/1 = Disbale/Enable comments
+- `HASHTAGS`: Hashtags to add while reposting reels
+## Youtube Configurations
+- `IS_ENABLED_YOUTUBE_SCRAPING`: 0/1 = Turn Off/Turn On Shorts Scraper
+- `YOUTUBE_API_KEY`: Your YouTube API key
+- `CHANNEL_LINKS`: An array of YouTube channel links to scrape shorts from
+
+
+
+
 
 Example:
 
 ```python
+import os
+
+#-------------------------------
+# Global Configurations
+#-------------------------------
+
+# Config Variables
+CURRENT_DIR = os.getcwd() + os.sep
+
+# SQLite DB path
+DB_PATH = CURRENT_DIR + 'database' + os.sep + 'sqlite.db'
+
+# Download Path
+DOWNLOAD_DIR = CURRENT_DIR + 'downloads' + os.sep  # Path of folder where files will be stored
+
+#IS REMOVE FILES
+IS_REMOVE_FILES = 1
+
+# Remove Posted Files Interval
+REMOVE_FILE_AFTER_MINS = 120 #every two hours
+
+#-------------------------------
+# Instagram Configurations
+#-------------------------------
+
+# IS RUN REELS SCRAPER
+IS_ENABLED_REELS_SCRAPER = 1
+
+# IS RUN AUTO POSTER
+IS_ENABLED_AUTO_POSTER = 1
+
 # Fetch LIMIT for scraper script
 FETCH_LIMIT = 10
 
 # Posting interval in Minutes
-POSTING_INTERVAL_IN_MIN = 15 # Every 15 Minutes
+POSTING_INTERVAL_IN_MIN = 15  # Every 15 Minutes
 
 # Scraper interval in Minutes
-SCRAPER_INTERVAL_IN_MIN = 720 # Every 12 hours
+SCRAPER_INTERVAL_IN_MIN = 720  # Every 12 hours
 
 # Instagram Username & Password
 USERNAME = "your_username"
 PASSWORD = "your_password"
-
-#YOUTUBE API KEY
-YOUTUBE_API_KEY = "YOUR_API_KEY"
 
 # Account List for scraping
 ACCOUNTS = [
@@ -122,43 +160,39 @@ ACCOUNTS = [
     "dynamo__gaming"
 ]
 
+# like_and_view_counts_disabled
+LIKE_AND_VIEW_COUNTS_DISABLED = 0
+
+# disable_comments
+DISABLE_COMMENTS = 0
+
+# HASHTAGS to add while Posting
+HASHTAGS = "#reels #shorts #likes #follow"
+
+#-------------------------------
+# Youtube Configurations
+#-------------------------------
+
+# IS RUN YOUTUBE SCRAPER
+IS_ENABLED_YOUTUBE_SCRAPING = 0
+
+# YOUTUBE API KEY
+YOUTUBE_API_KEY = "YOUR_API_KEY"
+
 # YouTube Channel List short for scraping
 CHANNEL_LINKS = [
     "https://www.youtube.com/@exampleChannleName."
 ]
-
-# HASHTAGS to add while Posting
-HASHTAGS = "#gaming #gamer #ps #playstation #videogames #game #xbox #games #twitch #fortnite #pc #memes #pcgaming #gamers #gamingcommunity #youtube #xboxone #gamergirl #nintendo #gta #callofduty #streamer #follow #pubg #videogame #esports #bhfyp #meme #twitchstreamer #art"
 ```
 
 ## Usage
 
-### Scraping Reels
+Based on `config.py` this script will run all commands
 
-To scrape reels from the specified accounts in `config.py`, run:
-
-```bash
-python reels.py
-```
-
-This will scrape reels and store them in the `downloads` folder.
-
-### Scraping YouTube Shorts
-
-To scrape shorts from the specified YouTube channels in `config.py`, run:
+-  Example: `IS_ENABLED_REELS_SCRAPER = 1` then `app.py` itself run the reels scraper as so on for Auto poster : `IS_ENABLED_AUTO_POSTER=1` and for shorts scraper : `IS_ENABLED_YOUTUBE_SCRAPING = 1`
 
 ```bash
-python shorts.py
-```
-
-This will scrape shorts and store them in the `downloads` folder.
-
-### Posting Reels and Shorts
-
-To post scraped reels and shorts to your Instagram account, run:
-
-```bash
-python poster.py
+python app.py
 ```
 
 This will post reels and shorts at the specified interval in `config.py`.
@@ -172,7 +206,7 @@ You can also use Docker to build and run Reels-AutoPilot.
 To build the Docker image, run:
 
 ```bash
-docker build -t reels-autopilot .
+docker-compose build
 ```
 
 ### Run the Docker Container
@@ -180,7 +214,7 @@ docker build -t reels-autopilot .
 To run the Docker container, run:
 
 ```bash
-docker run -d reels-autopilot
+docker-compose up -d
 ```
 
 ### Check Running Containers
@@ -188,7 +222,7 @@ docker run -d reels-autopilot
 To check the running Docker containers, run:
 
 ```bash
-docker ps
+docker-compose ps
 ```
 
 ### Stop the Docker Container
@@ -196,7 +230,7 @@ docker ps
 To stop the Docker container, run:
 
 ```bash
-docker stop <container_id>
+docker-compose down
 ```
 
 ## Contributing
@@ -210,14 +244,6 @@ Reels-AutoPilot is licensed under the GNU General Public License v3.0 - see the 
 ## Acknowledgements
 
 - Thanks to all developers who contributed to the libraries used in this project.
-
-## Additional Features
-
-1. Reels and shorts scheduling: Schedule specific reels and shorts to be posted at certain times or dates.
-2. Custom captions: Add custom captions to each reel or short when posting.
-3. Multiple Instagram accounts: Support for posting reels and shorts to multiple Instagram accounts.
-4. Auto-hashtag generation: Automatically generate relevant hashtags based on the content of a reel or short.
-5. Analytics and insights: Collect data on the performance of your posted reels and shorts, such as views, likes, and comments.
 
 ## Frequently Asked Questions
 
@@ -262,3 +288,4 @@ If you continue to face issues or need further assistance, please open an issue 
 - **v1.0.0** - Initial release with basic scraping and posting features.
 - **v1.1.0** - Added support for scraping YouTube shorts and improved error handling.
 - **v1.2.0** - Implemented Docker configuration and enhanced documentation.
+- **v1.3.0** - Implemented Remover and process threading also resolved docker issue.
