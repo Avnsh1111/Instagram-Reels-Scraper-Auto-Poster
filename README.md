@@ -4,31 +4,16 @@
 
 Reels-AutoPilot is a powerful GitHub repository that scrapes reels from specified Instagram accounts and shorts from YouTube channels, and automatically posts them to your Instagram account. Keep up with the latest content from your favorite creators and effortlessly share it with your followers. Enhance your Instagram presence and grow your account with Reels-AutoPilot!
 
-# Active Sponsors
-![coding-sunshine](https://avatars.githubusercontent.com/u/3206025?s=80&v=4)
-
-### Looking For Sponsors
-<a href="https://www.buymeacoffee.com/avnsh1111" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
-&nbsp;&nbsp;
-<noscript><a href="https://liberapay.com/avnsh1111/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
-
-
 ## Table of Contents
 
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
+    - [Initial Configuration](#initial-configuration)
     - [Generate a YouTube API Key](#generate-a-youtube-api-key)
-    - [Configuration](#configuration)
 - [Usage](#usage)
-    - [Scraping Reels](#scraping-reels)
-    - [Scraping YouTube Shorts](#scraping-youtube-shorts)
-    - [Posting Reels and Shorts](#posting-reels-and-shorts)
-- [Docker Configuration](#docker-configuration)
-    - [Build the Docker Image](#build-the-docker-image)
-    - [Run the Docker Container](#run-the-docker-container)
-    - [Check Running Containers](#check-running-containers)
-    - [Stop the Docker Container](#stop-the-docker-container)
+    - [Running App](#usage)
+    - [Dashboard](#dashboard)
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
@@ -46,7 +31,6 @@ Before using Reels-AutoPilot, set your configuration variables in the `config.py
 - Python 3.x
 - A valid Instagram account
 - A Google Developers Console project with the YouTube Data API enabled and an API key
-- Docker (optional)
 
 ### Installation
 
@@ -62,6 +46,19 @@ git clone https://github.com/avnsh1111/Instagram-Reels-Scraper-Auto-Poster.git
 pip install -r requirements.txt
 ```
 
+### Initial Configuration
+
+To set up your initial configuration:
+
+1. Run `src/start.py`:
+```bash
+python src/start.py
+```
+
+2. Follow the prompts to set up your Instagram credentials, YouTube API key, and other configuration settings.
+
+After completing the setup process, the `src/app.py` script will run automatically based on your configuration settings.
+
 ### Generate a YouTube API Key
 
 1. Set up a Google Developers Console project and enable the YouTube Data API:
@@ -74,129 +71,26 @@ pip install -r requirements.txt
    
    d. Create an API key by going to "Credentials" in the left-hand menu, then click on "Create credentials" > "API key".
 
-2. Once you have your API key, open the `config.py` file in the Reels-AutoPilot project and replace `YOUR_API_KEY` with your newly generated API key:
-
-```python
-YOUTUBE_API_KEY = "YOUR_API_KEY"
-```
-
-### Configuration
-
-In `config.py`, set the following variables:
-
-- `USERNAME`: Your Instagram username
-- `PASSWORD`: Your Instagram password
-- `ACCOUNTS`: An array of Instagram accounts to scrape reels from
-- `CHANNEL_LINKS`: An array of YouTube channel links to scrape shorts from
-- `YOUTUBE_API_KEY`: Your YouTube API key
-- `FETCH_LIMIT`: Number of reels/shorts to fetch per account/channel
-- `HASHTAGS`: Hashtags to add while reposting reels
-- `POSTING_INTERVAL_IN_MIN`: Interval in minutes between reel/short postings
-- `SCRAPER_INTERVAL_IN_MIN`: Interval in minutes between scraper runs
-
-Example:
-
-```python
-# Fetch LIMIT for scraper script
-FETCH_LIMIT = 10
-
-# Posting interval in Minutes
-POSTING_INTERVAL_IN_MIN = 15 # Every 15 Minutes
-
-# Scraper interval in Minutes
-SCRAPER_INTERVAL_IN_MIN = 720 # Every 12 hours
-
-# Instagram Username & Password
-USERNAME = "your_username"
-PASSWORD = "your_password"
-
-#YOUTUBE API KEY
-YOUTUBE_API_KEY = "YOUR_API_KEY"
-
-# Account List for scraping
-ACCOUNTS = [
-    "totalgaming_official",
-    "carryminati",
-    "techno_gamerz",
-    "payalgamingg",
-    "dynamo__gaming"
-]
-
-# YouTube Channel List short for scraping
-CHANNEL_LINKS = [
-    "https://www.youtube.com/@exampleChannleName."
-]
-
-# HASHTAGS to add while Posting
-HASHTAGS = "#gaming #gamer #ps #playstation #videogames #game #xbox #games #twitch #fortnite #pc #memes #pcgaming #gamers #gamingcommunity #youtube #xboxone #gamergirl #nintendo #gta #callofduty #streamer #follow #pubg #videogame #esports #bhfyp #meme #twitchstreamer #art"
-```
+2. During the initial configuration process, you'll be prompted to input your YouTube API key. Enter the key when prompted.
 
 ## Usage
 
-### Scraping Reels
+### Scraping Reels, YouTube Shorts, and Posting
 
-To scrape reels from the specified accounts in `config.py`, run:
+Run the `src/app.py` script to start the configured tasks (scraping reels, scraping shorts, and posting):
 
 ```bash
-python reels.py
+python src/app.py
 ```
 
-This will scrape reels and store them in the `downloads` folder.
+Depending on the selected configuration options, this will scrape reels and shorts, store them in the `downloads` folder, and post them to your Instagram account at the specified interval.
 
-### Scraping YouTube Shorts
+### Dashboard
 
-To scrape shorts from the specified YouTube channels in `config.py`, run:
-
-```bash
-python shorts.py
-```
-
-This will scrape shorts and store them in the `downloads` folder.
-
-### Posting Reels and Shorts
-
-To post scraped reels and shorts to your Instagram account, run:
+To see real-time updates, open a new terminal and run:
 
 ```bash
-python poster.py
-```
-
-This will post reels and shorts at the specified interval in `config.py`.
-
-## Docker Configuration
-
-You can also use Docker to build and run Reels-AutoPilot.
-
-### Build the Docker Image
-
-To build the Docker image, run:
-
-```bash
-docker build -t reels-autopilot .
-```
-
-### Run the Docker Container
-
-To run the Docker container, run:
-
-```bash
-docker run -d reels-autopilot
-```
-
-### Check Running Containers
-
-To check the running Docker containers, run:
-
-```bash
-docker ps
-```
-
-### Stop the Docker Container
-
-To stop the Docker container, run:
-
-```bash
-docker stop <container_id>
+python src/dashboard.py
 ```
 
 ## Contributing
