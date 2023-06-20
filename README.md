@@ -164,3 +164,4 @@ If you continue to face issues or need further assistance, please open an issue 
 - **v1.0.0** - Initial release with basic scraping and posting features.
 - **v1.1.0** - Added support for scraping YouTube shorts and improved error handling.
 - **v1.2.0** - Implemented Docker configuration and enhanced documentation.
+- **v2.0.0** - Implemented added live dashboard, post-to-story feature, removed docker support and optimized login flow. 
