@@ -56,11 +56,17 @@ pip install -r requirements.txt
 
 ### Initial Configuration
 
+Navigate to `src` directory:
+
+```bash
+cd src
+```
+
 To set up your initial configuration:
 
-1. Run `src/start.py`:
+1. Run `start.py`:
 ```bash
-python src/start.py
+python start.py
 ```
 
 2. Follow the prompts to set up your Instagram credentials, YouTube API key, and other configuration settings.
@@ -85,10 +91,10 @@ After completing the setup process, the `src/app.py` script will run automatical
 
 ### Scraping Reels, YouTube Shorts, and Posting
 
-Run the `src/app.py` script to start the configured tasks (scraping reels, scraping shorts, and posting):
+Run the `app.py` script to start the configured tasks (scraping reels, scraping shorts, and posting):
 
 ```bash
-python src/app.py
+python app.py
 ```
 
 Depending on the selected configuration options, this will scrape reels and shorts, store them in the `downloads` folder, and post them to your Instagram account at the specified interval.
@@ -98,7 +104,7 @@ Depending on the selected configuration options, this will scrape reels and shor
 To see real-time updates, open a new terminal and run:
 
 ```bash
-python src/dashboard.py
+python dashboard.py
 ```
 
 ## Contributing
