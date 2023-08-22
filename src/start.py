@@ -15,6 +15,7 @@ from db import Session, Config
 import helpers as Helper
 from datetime import datetime
 import auth
+import sys
 
 
 def make_layout() -> Layout:
@@ -76,7 +77,7 @@ print(layout)
 print("==========================================================================")
 result = input("Press Enter to start the setup...")  
 
-setup = input("Are you running this tool for first time? (y/n) : ")
+setup = input("Do you want to run the configuration (To update config values) ? (y/n) : ")
 
 if setup == 'y' :
 
@@ -174,6 +175,12 @@ if setup == 'y' :
             else:
                 print("  [red]Invalid input. Please enter password.[/red]")
 
+        try:
+            os.remove('session.json')
+            print(f"File session.json has been removed successfully.")
+        except OSError as e:
+            print(f"Error: {e}")
+
         auth.login()
 
         mainConfig.ACCOUNTS = input("  (ACCOUNTS) Enter list of username which you want to scrape (comma separated) :")
@@ -216,4 +223,5 @@ if setup == 'y' :
         Helper.save_config('CHANNEL_LINKS',mainConfig.CHANNEL_LINKS)
 
 
-os.system("python app.py 1")
+python_executable_path = sys.executable
+os.system(python_executable_path+" app.py 1")

@@ -4,7 +4,10 @@ import helpers as Helper
 import reels,poster,shorts,remover
 from instagrapi import Client
 import auth
+from rich import print
 from datetime import datetime, timedelta
+import random
+
 
 Helper.load_all_config()
 
@@ -23,13 +26,17 @@ while True:
 
         if config.IS_ENABLED_REELS_SCRAPER == "1" :
             if next_reels_scraper_run_at < datetime.now() :
+                print("[green] Scrapping Reels... [/green]")
                 reels.main(api)
                 next_reels_scraper_run_at =  datetime.now() + timedelta(seconds=int(config.SCRAPER_INTERVAL_IN_MIN)*60)
+                print("[green] Next Scraping time is : [/green]"+ next_reels_scraper_run_at.strftime("%H:%M:%S"))
 
         if config.IS_ENABLED_AUTO_POSTER == "1" :
             if next_poster_run_at < datetime.now() :
+                print("[green] Posting Reel [/green]")
                 poster.main(api)
-                next_poster_run_at =  datetime.now() + timedelta(seconds=int(config.POSTING_INTERVAL_IN_MIN)*60)
+                next_poster_run_at =  datetime.now() + timedelta(seconds=((int(config.POSTING_INTERVAL_IN_MIN)*60) + random.randint(5, 20)))
+                print("[green] Next Reel Posting time is : [/green]"+ next_poster_run_at.strftime("%H:%M:%S"))
 
     
         

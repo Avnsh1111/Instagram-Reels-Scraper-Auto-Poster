@@ -1,7 +1,7 @@
-instagrapi==1.17.8
-Requests==2.31.0
-SQLAlchemy==2.0.9
 google_api_python_client==2.86.0
-yt_dlp==2023.7.6
+instagrapi==1.19.7
 moviepy==1.0.3
-pillow==9.5.0
+Requests==2.31.0
+rich==13.5.2
+SQLAlchemy==2.0.9
+yt_dlp==2023.7.6

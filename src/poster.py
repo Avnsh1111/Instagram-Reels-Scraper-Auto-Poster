@@ -71,7 +71,7 @@ def main(api):
             api.delay_range = [1, 3]
             media = api.clip_upload(
                 reel.file_path,
-                config.HASHTAGS, #Caption
+                Helper.get_config('HASTAGS'), #Caption
                 extra_data={
                     # "custom_accessibility_caption": "alt text example",
                     "like_and_view_counts_disabled": config.LIKE_AND_VIEW_COUNTS_DISABLED,

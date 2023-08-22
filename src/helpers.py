@@ -47,22 +47,30 @@ def load_all_config() :
 
 # Save config by key Value
 def save_config(key,value) :
-    session = Session()
-    exists = session.query(Config).filter_by(key=key).first()
-    if not exists:
-        config_db = Config(
-                    key=key,
-                    value=value,
-                    created_at = datetime.now(),
-                    updated_at = datetime.now(),
-                    )
-        session.add(config_db)
-        session.commit()
-    else:
-        session.query(Config).filter_by(key=key).update({'value': value, 'updated_at': datetime.now()})
+    try:
+        session = Session()
 
-         
-    session.close()
+        exists = session.query(Config).filter_by(key=key).first()
+
+        if not exists:
+            config_db = Config(
+                key=key,
+                value=value,
+                created_at=datetime.now(),
+                updated_at=datetime.now(),
+            )
+            session.add(config_db)
+            session.commit()
+        else:
+            session.query(Config).filter_by(key=key).update({'value': value, 'updated_at': datetime.now()})
+            session.commit()  # Commit changes after updating
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        session.rollback()  # Rollback changes if an error occurred
+
+    finally:
+        session.close()
 
 # Display the information about the developer
 def make_my_information() -> Panel:

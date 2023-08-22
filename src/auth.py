@@ -21,6 +21,7 @@ def login() :
         api.login (config.USERNAME, config.PASSWORD) # this doesn't actually login using username/password but uses the session
         api.dump_settings(SESSION_FILE)
         api.get_timeline_feed()
+        print("   [green] Logged in successfully. [/green]")
         return api
         
     else :
@@ -28,4 +29,5 @@ def login() :
         api.login(config.USERNAME, config.PASSWORD)
         api.dump_settings(SESSION_FILE)
         api.get_timeline_feed()
+        print("   [green] Logged in successfully. [/green]")
         return api
