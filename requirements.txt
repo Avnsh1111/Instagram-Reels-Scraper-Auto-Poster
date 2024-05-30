@@ -1,7 +1,7 @@
 google_api_python_client==2.86.0
 instagrapi==1.19.7
 moviepy==1.0.3
-Requests==2.31.0
+Requests==2.32.0
 rich==13.5.2
 SQLAlchemy==2.0.9
 yt_dlp==2024.4.9
