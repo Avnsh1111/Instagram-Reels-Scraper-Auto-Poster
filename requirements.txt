@@ -4,4 +4,4 @@ moviepy==1.0.3
 Requests==2.32.0
 rich==13.5.2
 SQLAlchemy==2.0.9
-yt_dlp==2024.4.9
+yt_dlp==2024.7.7
