@@ -126,8 +126,8 @@ python dashboard.py
 `ig_reel_downloader_poster.py` is a one-shot script you run manually (no scheduler, no daemon) that:
 
 1. **Downloads** reels from all configured source accounts via the Instagram API.
-2. **Preserves original captions** — `@mentions` are replaced with `@bigclappin`; hashtags from the original post are kept as-is. If the original had no hashtags, your configured placeholder hashtags are appended.
-3. **Burns a `@bigclappin` watermark** into the bottom-right corner of each video using moviepy before uploading.
+2. **Preserves original captions** — `@mentions` are replaced with your configured `POSTER_ACCOUNT`; hashtags from the original post are kept as-is. If the original had no hashtags, your configured placeholder hashtags are appended.
+3. **Burns your `POSTER_ACCOUNT` as a watermark** into the bottom-right corner of each video using moviepy before uploading.
 4. **Reposts** to your Instagram account with the processed caption.
 5. **Tracks state** in the existing SQLite database (`is_posted`, `posted_at`) and a new `captions` table so nothing gets posted twice.
 
@@ -157,7 +157,7 @@ Make sure `src/start.py` has been run at least once so credentials and account l
 
 | Scraped caption | Posted caption |
 |-----------------|----------------|
-| `"Cool clip @totalgaming #fyp #reels"` | `"Cool clip @bigclappin #fyp #reels"` |
+| `"Cool clip @totalgaming #fyp #reels"` | `"Cool clip @<POSTER_ACCOUNT> #fyp #reels"` |
 | `"Just vibes"` (no hashtags) | `"Just vibes\n\n#reels #shorts #likes #follow"` |
 | `""` (empty) | `"#reels #shorts #likes #follow"` |
 
@@ -234,4 +234,4 @@ If you continue to face issues or need further assistance, please open an issue 
 - **v1.1.0** - Added support for scraping YouTube shorts and improved error handling.
 - **v1.2.0** - Implemented Docker configuration and enhanced documentation.
 - **v2.0.0** - Implemented added live dashboard, post-to-story feature, removed docker support and optimized login flow.
-- **v2.1.0** - Added standalone `ig_reel_downloader_poster.py` with original caption preservation, `@mention` rewriting, `@bigclappin` video watermark, and `captions` database table. Fixed reel filter bug in `reels.py` and None-crash in `poster.py`.
+- **v2.1.0** - Added standalone `ig_reel_downloader_poster.py` with original caption preservation, `@mention` rewriting, configurable `POSTER_ACCOUNT` video watermark, and `captions` database table. Fixed reel filter bug in `reels.py` and None-crash in `poster.py`.
