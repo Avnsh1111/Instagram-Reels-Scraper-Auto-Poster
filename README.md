@@ -4,6 +4,16 @@
 
 Reels-AutoPilot is a powerful GitHub repository that scrapes reels from specified Instagram accounts and shorts from YouTube channels, and automatically posts them to your Instagram account. Keep up with the latest content from your favorite creators and effortlessly share it with your followers. Enhance your Instagram presence and grow your account with Reels-AutoPilot!
 
+> **Disclaimer**
+> This repository, including all additions and modifications, **has not been fully tested**. Use at your own risk. The authors and contributors accept no responsibility for account bans, data loss, or any other consequences arising from the use of this software. Always test on a secondary account before using on your main Instagram account.
+
+---
+
+> **Original Project Credit**
+> This repository is based on the original work by [**@Avnsh1111**](https://github.com/Avnsh1111) — [Instagram-Reels-Scraper-Auto-Poster](https://github.com/Avnsh1111/Instagram-Reels-Scraper-Auto-Poster). Full credit for the core architecture, scraping engine, poster, dashboard, and scheduler goes to the original author. This fork adds a standalone downloader/poster script with caption preservation and video watermarking.
+
+---
+
 # Active Sponsors
 <a href="https://github.com/APeter" target="_blank"><img src="https://avatars.githubusercontent.com/u/3152337?s=80&v=4" width="80" alt="APeter"></a>
 
@@ -14,6 +24,8 @@ Reels-AutoPilot is a powerful GitHub repository that scrapes reels from specifie
 
 ## Table of Contents
 
+- [Disclaimer](#disclaimer)
+- [Original Project Credit](#original-project-credit)
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
@@ -167,6 +179,7 @@ Reels-AutoPilot is licensed under the GNU General Public License v3.0 - see the 
 
 ## Acknowledgements
 
+- **Original author:** [Avnsh1111](https://github.com/Avnsh1111) — creator of the core Reels-AutoPilot project ([original repo](https://github.com/Avnsh1111/Instagram-Reels-Scraper-Auto-Poster)). All foundational work (instagrapi integration, scheduler, dashboard, story posting) is their contribution.
 - Thanks to all developers who contributed to the libraries used in this project.
 
 ## Additional Features
