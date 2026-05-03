@@ -49,6 +49,7 @@ def config_table() -> Panel:
     table.add_row(" SCRAPER_INTERVAL_IN_MIN ", " Reels scraping interval in minutes Ex. 120 : For every 2 hours ")
     table.add_row(" USERNAME ", " Instagram Username ")
     table.add_row(" PASSWORD ", " Instagram Password ")
+    table.add_row(" POSTER_ACCOUNT ", " Your Instagram username used for @mention replacement and video watermark (without @) ")
     table.add_row(" ACCOUNTS ", " Give list of accounts which you want to scrape Ex. carrayminati,totalgaming_official comma separated ")
     table.add_row(" HASTAGS ", " Enter hashtags which you want to add while auto posting ")
     table.add_row(" LIKE_AND_VIEW_COUNTS_DISABLED ", ' [red]1=Disabled[/red] ; [green]0=Enabled[/green] Switch to turn On or Off Likes and view counts ' )
@@ -182,6 +183,14 @@ if setup == 'y' :
             print(f"Error: {e}")
 
         auth.login()
+
+        while True:
+            mainConfig.POSTER_ACCOUNT = input("  (POSTER_ACCOUNT) Enter your Instagram username for @mention replacement and watermark (without @) :")
+            if mainConfig.POSTER_ACCOUNT != "":
+                Helper.save_config('POSTER_ACCOUNT', mainConfig.POSTER_ACCOUNT)
+                break
+            else:
+                print("  [red]Invalid input. Please enter your Instagram username.[/red]")
 
         mainConfig.ACCOUNTS = input("  (ACCOUNTS) Enter list of username which you want to scrape (comma separated) :")
         Helper.save_config('ACCOUNTS',mainConfig.ACCOUNTS)

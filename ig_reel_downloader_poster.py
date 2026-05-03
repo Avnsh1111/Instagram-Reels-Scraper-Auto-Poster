@@ -3,17 +3,17 @@
 ig_reel_downloader_poster.py
 
 Standalone script: downloads Instagram Reels from configured source accounts
-and reposts them to @bigclappin with:
-  - Original caption preserved (@mentions replaced with @bigclappin)
+and reposts them with:
+  - Original caption preserved (@mentions replaced with your POSTER_ACCOUNT)
   - Hashtags from original post; if none, placeholder hashtags appended
-  - @bigclappin watermark burned into the video (bottom-right)
+  - POSTER_ACCOUNT watermark burned into the video (bottom-right)
 
 Usage:
     python ig_reel_downloader_poster.py
 
 Prerequisites:
-    - Run src/start.py first to configure USERNAME, PASSWORD, ACCOUNTS, HASTAGS
-    - Or set credentials directly in src/config.py
+    - Run src/start.py first to configure USERNAME, PASSWORD, ACCOUNTS,
+      POSTER_ACCOUNT, and HASTAGS — or set them directly in src/config.py
 """
 
 import sys
@@ -56,7 +56,13 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
 )
 
-POSTER_ACCOUNT = 'bigclappin'
+
+def _poster_account():
+    """Return the configured poster account name (without @), falling back to USERNAME."""
+    account = getattr(config, 'POSTER_ACCOUNT', '') or ''
+    if not account.strip() or account == 'your_username':
+        account = getattr(config, 'USERNAME', '') or ''
+    return account.strip().lstrip('@')
 
 
 # ------------------------------------------------------------------ #
@@ -66,11 +72,11 @@ POSTER_ACCOUNT = 'bigclappin'
 def process_caption(original):
     """Return a ready-to-post caption from the scraped original.
 
-    - All @mentions → @bigclappin
+    - All @mentions → @<POSTER_ACCOUNT>
     - Hashtags from original kept; if none, configured placeholders appended
     """
     text = original or ''
-    text = re.sub(r'@\w+', f'@{POSTER_ACCOUNT}', text)
+    text = re.sub(r'@\w+', f'@{_poster_account()}', text)
 
     if not re.search(r'#\w+', text):
         try:
@@ -90,7 +96,7 @@ def process_caption(original):
 # ------------------------------------------------------------------ #
 
 def add_watermark(input_path):
-    """Burn @bigclappin text into the video. Returns watermarked file path."""
+    """Burn the configured POSTER_ACCOUNT as a text watermark into the video. Returns watermarked file path."""
     out_path = input_path.rsplit('.', 1)[0] + '_wm.mp4'
     if os.path.exists(out_path):
         return out_path
@@ -99,7 +105,7 @@ def add_watermark(input_path):
     try:
         txt = (
             TextClip(
-                f'@{POSTER_ACCOUNT}',
+                f'@{_poster_account()}',
                 fontsize=36,
                 color='white',
                 stroke_color='black',
@@ -273,8 +279,9 @@ def post_reels(api):
 # ------------------------------------------------------------------ #
 
 def main():
+    Helper.load_all_config()
     rprint(Rule('[bold blue]Instagram Reels Downloader & Poster[/bold blue]'))
-    rprint(f'Poster account: [bold magenta]@{POSTER_ACCOUNT}[/bold magenta]')
+    rprint(f'Poster account: [bold magenta]@{_poster_account()}[/bold magenta]')
 
     try:
         api = auth.login()

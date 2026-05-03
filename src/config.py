@@ -45,6 +45,9 @@ SCRAPER_INTERVAL_IN_MIN = 720  # Every 12 hours
 USERNAME = "your_username"
 PASSWORD = "your_password"
 
+# Account name used for @mention replacement and video watermark (without @)
+POSTER_ACCOUNT = "your_username"
+
 # Account List for scraping
 ACCOUNTS = [
     "totalgaming_official",
