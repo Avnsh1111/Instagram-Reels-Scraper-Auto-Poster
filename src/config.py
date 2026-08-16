@@ -36,7 +36,7 @@ IS_POST_TO_STORY = "1"
 FETCH_LIMIT = 10
 
 # Posting interval in Minutes
-POSTING_INTERVAL_IN_MIN = 15  # Every 15 Minutes
+POSTING_INTERVAL_IN_MIN = 72  # Every 15 Minutes
 
 # Scraper interval in Minutes
 SCRAPER_INTERVAL_IN_MIN = 720  # Every 12 hours
@@ -47,11 +47,11 @@ PASSWORD = "your_password"
 
 # Account List for scraping
 ACCOUNTS = [
-    "totalgaming_official",
-    "carryminati",
-    "techno_gamerz",
-    "payalgamingg",
-    "dynamo__gaming"
+    "repost.culture",
+    "i_have_no_memes96_v2",
+    "memez_bee",
+    "memescollect",
+    "memescollect"
 ]
 
 # like_and_view_counts_disabled
@@ -61,7 +61,7 @@ LIKE_AND_VIEW_COUNTS_DISABLED = "0"
 DISABLE_COMMENTS = "0"
 
 # HASHTAGS to add while Posting
-HASHTAGS = "#reels #shorts #likes #follow #Reels-AutoPilot"
+HASHTAGS = "#reels #shorts #likes #follow #sigma #rizz #brainrot"
 
 #--------------------------------------------------------------------------------------------------#
 # Youtube Configurations                                                                           #
